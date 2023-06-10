@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <style>
+      body {
+        background: #ee4dc6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden; /* Hide scrollbars */
+      }
+
+      .clock {
+        position: relative;
+        padding: 4.3px;
+        border: 5px solid black;
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        background: #eea7a7;
+      }
+
+      .hand {
+        position: absolute;
+        top: 50%;
+        width: 7.5rem;
+        height: 2.6px;
+        background: black;
+        transform: rotate(0deg);
+        transform-origin: 100%;
+        transition: all 0.05s ease;
+        transition-timing-function: cubic-bezier(0, 1.44, 1, 0.25);
+      }
+
+      /* .hour-hand {
+        width: 3.25rem;
+        height: 2.6px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(0deg);
+        transform-origin: 50%;
+        transition: all 0.05s ease;
+        transition-timing-function: cubic-bezier(0, 1.44, 1, 0.25);
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="hand hour-hand"></div>
+      <div class="hand minutes-hand"></div>
+      <div class="hand seconds-hand"></div>
+    </div>
+    <script>
+      const second_Hand = document.querySelector(".seconds-hand");
+      const minute_Hand = document.querySelector(".minutes-hand");
+      const hour_Hand = document.querySelector(".hour-hand");
+
+      function time() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const secondstoDegree = (seconds / 60) * 360 + 90;
+        second_Hand.style.transform = `rotate(${secondstoDegree}deg)`;
+
+        const minutes = now.getMinutes();
+        const minutestoDegree = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
+        minute_Hand.style.transform = `rotate(${minutestoDegree}deg)`;
+
+        const hours = now.getHours();
+        const hourstoDegree = (hours / 12) * 360 + (mins / 60) * 30 + 90;
+        hour_Hand.style.transform = `rotate(${hourstoDegree}deg)`;
+
+        console.log(seconds);
+        console.log(minutes, "a");
+      }
+      setInterval(time, 1000);
+    </script>
+  </body>
+</html>
